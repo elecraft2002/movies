@@ -8,8 +8,7 @@ const findMovie = async (selected, excluded) => {
     ","
   )}. ${excluded && `That is not ${excluded.join(",")}`}
   On first line, send mi a IMDB link, to that movie.
-  On second line, tell me a good reason, why should I watch it.
-  `);
+  On second line, tell me a good reason, why should I watch it.`);
 };
 
 export default async function handler(req, res) {
