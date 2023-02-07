@@ -78,14 +78,18 @@ export default function Home() {
 
   useEffect(() => {
     const load = async () => {
-      const response = await fetch(`./api/movie/popular?api_key=${TMDB_API_KEY}&language=${LANG}`)
+      const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_API_KEY}&language=${LANG}`)
       const data = await response.json();
       setSelectedMovies(data.results.slice(0, 2))
-      console.log(selectedMovies)
     }
     load()
-    // fetchMovie(["Avatar", "Forrest Gump"])
   }, [])
+  
+  const handleFetchButton=()=>{
+    console.log("Fetch")
+    fetchMovie(selectedMovies.map(movie=>movie.title))
+  }
+
   return (
     <>
       <Head>
@@ -103,18 +107,19 @@ export default function Home() {
           <StyledSelectionContainer>
             {selectedMovies?.map((movie, i) => {
               return <>
-                <MovieSelection key={i} selectedMovies={movie} setSelectedMovies={setSelectedMovies} />
-                {selectedMovies.length != i + 1 && <StyledPlus key={i+"x"}>+</StyledPlus>}
+                <MovieSelection index={i} key={i} selectedMovies={movie} setSelectedMovies={setSelectedMovies} />
+                {selectedMovies.length != i + 1 && <StyledPlus key={i + "x"}>+</StyledPlus>}
               </>
             })}
           </StyledSelectionContainer>
           <Category />
-          <Button />
+          <button  onClick={handleFetchButton}>Calculate</button>
           <StyledTopBackground>
             {selectedMovies?.map((movie, i) => {
-              return <StyledTopBackgroundImgContainer key={i}>
-                <StyledImg src={imageSize.medium + movie.backdrop_path} />
-              </StyledTopBackgroundImgContainer>
+              return (
+                <StyledTopBackgroundImgContainer key={i}>
+                  <StyledImg src={imageSize.medium + movie.backdrop_path} />
+                </StyledTopBackgroundImgContainer>)
             })}
           </StyledTopBackground>
         </StyledTopSection>

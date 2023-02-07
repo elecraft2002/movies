@@ -32,7 +32,7 @@ const StyledImgContainer = styled.div`
 const StyledContainer = styled.div`
 `
 
-export default function MovieSelection({ selectedMovies, setSelectedMovies }) {
+export default function MovieSelection({ selectedMovies, setSelectedMovies, index }) {
 
     const imgUrl = imageSize.medium + selectedMovies.poster_path;
     return (
@@ -40,7 +40,7 @@ export default function MovieSelection({ selectedMovies, setSelectedMovies }) {
             <StyledImgContainer url={imgUrl}>
                 <StyledImg src={imgUrl} />
             </StyledImgContainer>
-            <SearchBar selectedMovies={selectedMovies} setSelectedMovies={setSelectedMovies}/>
+            <SearchBar selectedMovies={selectedMovies} setSelectedMovies={setSelectedMovies}index={index} />
         </div>
     )
 }
