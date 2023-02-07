@@ -14,7 +14,7 @@ const findMovie = async (selected, excluded) => {
 export default async function handler(req, res) {
 
   const selected = req.query.selected?.split("+")
-  const excluded = req.query.selected?.split("+")
+  const excluded = req.query.excluded?.split("+")
   console.log(selected)
   if (!selected) {
     res.status(404).json("error")

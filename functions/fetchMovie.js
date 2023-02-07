@@ -1,4 +1,4 @@
-import { API_URL } from "@/global";
+import { API_URL } from "@/globals";
 
 const fetchMovie = async (selected, excluded) => {
     console.log("Fetching")
